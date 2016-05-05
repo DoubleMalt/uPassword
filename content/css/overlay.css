@@ -1,0 +1,6 @@
+#upassword-navbar-button {
+     list-style-image: url("chrome://upassword/content/images/icon16_grey.png") !important;
+}
+.popup-notification-icon[popupid="upassword-popup"] {
+  list-style-image: url("chrome://upassword/content/images/icon128.png");
+}

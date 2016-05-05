@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>upassword</title>
+  <link href="css/bootstrap.css" rel="stylesheet">
+  <link href="css/upassword.index.css" rel="stylesheet">
+  <link rel="shortcut icon" href="images/favicon.ico" />
+  <script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+  <script type="text/javascript" src="js/bootstrap-buttons.js"></script>
+  <script type="text/javascript" src="js/bootstrap-modal.js"></script>
+  <script type="text/javascript" src="js/bootstrap-twipsy.js"></script>
+  <script type="text/javascript" src="js/bootstrap-alerts.js"></script>
+  <script type="text/javascript" src="js/bootstrap-dropdown.js"></script>
+  <script type="text/javascript" src="js/upassword.js"></script>
+  <script type="text/javascript" src="js/upassword.index.js"></script>
+</head>
+<body>  
+<div class="topbar-wrapper" style="z-index: 5;">
+  <div class="topbar" data-dropdown="dropdown">
+    <div class="topbar-inner">
+      <div class="container">
+        <h3><a href="#" i18n='managePasswordTitle'>managePasswordTitle</a></h3>
+        <ul class="nav">
+          <li><a href="#" i18n='new' class="createRule">新建</a></li>
+          <li><a href="#" i18n='delete' class="deleteRule">删除</a></li>
+          <li class="dropdown" data-dropdown="dropdown" >
+            <a href="#" class="dropdown-toggle" i18n="more">other</a>
+            <ul class="dropdown-menu">
+              <li><a href="#" i18n='refresh' class="refresh">refresh</a></li>
+              <li class="divider"></li>
+              <li><a href="#" i18n='importJSON' class="importJSON">importJSON</a></li>
+              <li><a href="#" i18n='exportJSON' class="exportJSON">exportJSON</a></li>
+              <li class="divider"></li>
+              <li><a href="#" i18n='resetSetting' class="resetSetting">resetSetting</a></li>
+            </ul>
+          </li>
+        </ul>
+        <form class="pull-right" action="">
+          <input type="text" id='searchTxt' placeholder="Search" i18nTarget='placeholder,search'>
+        </form>
+      </div>
+    </div>
+  </div>
+  <table class="zebra-striped" id="passwordRules">
+    <thead>
+      <tr>
+        <th style="text-align:center;"><input type="checkbox" class='selectAllCheckbox'></th>
+        <th class="green header" i18n="displayNameLabel" name="displayName">规则名称</th>
+        <th class="green header" style="text-align:center;" i18n="passwordLength" name="upLength">密码长度</th>
+        <th class="green header" style="text-align:center;" i18n="passwordType" name="upType">密码规则</th>
+        <th class="green header" style="text-align:center;" i18n="passwordRevision" name="upRevision">密码版本</th>
+        <th class="green header" style="text-align:center;" i18n="defaultAction" name="defaultAction">默认操作</th>
+        <th class="green header" style="text-align:center;" i18n="favorite" name="favorite">收藏</th>
+        <th class="green header" style="text-align:center;" i18n="modified" name="modified">修改时间</th>
+        <!--<th class="green header" style="text-align:center;" i18n="lastVisited">最后一次使用时间</th>//-->
+        <th class="green" style="text-align:center;" i18n="aliased">aliased</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody id="tableContent">
+
+    </tbody>
+  </table>
+</div>
+
+<div id="modal-from-dom" class="modal hide fade">
+  <div class="modal-header">
+    <a href="#" class="close">&times;</a>
+    <h3>Modal Heading</h3>
+  </div>
+  <div class="modal-body" style="height: 360px;overflow-y:auto">
+    <form id="mntCfg">
+      <fieldset>
+        <div class="clearfix">
+          <label for="displayName" i18n='displayNameLabel'>displayNameLabel</label>
+          <div class="input">
+            <input type="text" size="30" name="displayName" class="span4" data-placement="right" rel='twipsy' i18nTarget='title,mustInputDisplayName' title='mustInputDisplayName' 
+            required />
+          </div>
+        </div>
+        <div class="clearfix">
+          <label for="upLength" i18n='passwordLength'>passwordLength</label>
+          <div class="input">
+            <select id="upLength" name="upLength" class="span4">
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8" selected>8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+              <option value="11">11</option>
+              <option value="12">12</option>
+              <option value="13">13</option>
+              <option value="14">14</option>
+              <option value="15">15</option>
+              <option value="16">16</option>
+              <option value="17">17</option>
+              <option value="18">18</option>
+            </select>
+          </div>
+        </div>
+        <div class="clearfix">
+          <label id="upType" i18n='passwordType'>passwordType</label>
+          <div class="input">
+            <ul class="inputs-list">
+              <li>
+                <label>
+                  <input type="checkbox" value="1" name="upType" checked>
+                  <span i18n='withNumbers'>withNumbers</span>
+                </label>
+              </li>
+              <li>
+                <label>
+                  <input type="checkbox" value="2" name="upType" checked>
+                  <span i18n='withLowCaseLetters'>withLowCaseLetters</span>
+                </label>
+              </li>
+              <li>
+                <label>
+                  <input type="checkbox" value="4" name="upType" checked>
+                  <span i18n='withUpCaseLetters'>withUpCaseLetters</span>
+              </label>
+              </li>
+              <li>
+                <label>
+                  <input type="checkbox" value="8" name="upType">
+                  <span data-placement="right" rel='twipsy' title='mustChoiceOneRule' i18n='withSpecialChars' i18nTarget='title,mustChoiceOneRule' style="padding-right: 10px;">withSpecialChars</span>
+                </label>
+              </li>
+            </ul>
+            <span class="help-block">
+              <strong i18n='notice'>notice</strong> <span i18n='mustChoiceOneRule'>mustChoiceOneRule</span>
+            </span>
+          </div>
+        </div>
+        <div class="clearfix">
+          <label for="defaultAction" i18n='defaultAction'>defaultAction</label>
+          <div class="input">
+            <select id="defaultAction" name="defaultAction" class="span4">
+              <option value="copyAndDisplay" i18n='copyAndDisplayPassword'>copyAndDisplay</option>
+              <option value="copy" i18n='copyToClipboard' selected>copyToClipboard</option>
+              <option value="display" i18n='displayPassword'>displayPassword</option>
+            </select>
+          </div>
+        </div>
+        <div class="clearfix">
+          <label for="favorite" i18n='favorite'>favorite</label>
+          <div class="input">
+            <select id="favorite" name="favorite" class="span4">
+              <option value="true" i18n='yes' selected>yes</option>
+              <option value="false" i18n='no'>no</option>
+            </select>
+          </div>
+        </div>
+        <div class="clearfix">
+          <label for="upRevision" i18n='upRevision'>upRevision</label>
+          <div class="input">
+            <select id="upRevision" name="upRevision" class="span4">
+              <option value="0" selected></option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+            </select>
+          </div>
+        </div>
+        <div class="clearfix">
+          <label for="aliased" i18n="aliased">Textarea</label>
+          <div class="input">
+            <textarea class="span4" id="aliased" name="aliased" rows="3"></textarea>
+            <span class="help-block" i18n="aliasedDescription">
+              Block of help text to describe the field above if need be.
+            </span>
+          </div>
+        </div>
+      </fieldset>
+      <button type="reset" class="hide"></button>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <a href="#" class="btn primary" i18n="okay">Primary</a>
+    <a href="#" class="btn secondary" i18n="cancel">Secondary</a>
+  </div>
+</div>
+
+<div id="resetSetting" class="modal hide fade">
+  <div class="modal-header">
+    <a href="#" class="close">&times;</a>
+    <h3 i18n="warn" style="color: #C43C35;">Modal Heading</h3>
+  </div>
+  <div class="modal-body" i18n="resetSettingWarn"  style="color: #C43C35;">
+    resetSettingWarn
+  </div>
+  <div class="modal-footer">
+    <a href="#" class="btn danger" i18n="continueThisAction">continueThisAction</a>
+    <a href="#" class="btn secondary" i18n="cancel">cancel</a>
+  </div>
+</div>
+</body>
+</html>

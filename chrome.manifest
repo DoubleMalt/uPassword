@@ -1,0 +1,10 @@
+content   upassword                content/
+resource  upassword                ./
+
+locale    upassword   zh-CN        locale/zh-CN/
+locale    upassword   en-US        locale/en-US/
+locale    upassword   fr-FR         locale/fr-FR/
+
+overlay chrome://browser/content/browser.xul chrome://upassword/content/overlay.xul
+overlay	chrome://navigator/content/navigator.xul	chrome://upassword/content/overlay.xul
+style chrome://global/content/customizeToolbar.xul chrome://upassword/content/css/overlay.css

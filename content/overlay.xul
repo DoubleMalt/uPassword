@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://upassword/content/css/overlay.css" type="text/css"?>
+
+<overlay id="upasswordOverlay"
+	xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul">
+
+  <script type="application/x-javascript" src="chrome://upassword/content/js/upassword.js" />
+  <script type="application/x-javascript" src="chrome://upassword/content/js/upassword.overlay.js" />
+  <script type="application/x-javascript" src="chrome://upassword/content/js/upassword.tabWatcher.js" />
+  <script type="application/x-javascript" src="chrome://upassword/content/js/upassword.hashVisitor.js" />
+  <script type="application/x-javascript" src="chrome://upassword/content/js/upassword.passGen.js" />
+  
+  <toolbarpalette id="BrowserToolbarPalette">
+     <toolbarbutton id="upassword-navbar-button" 
+                     insertafter="search-container"    
+                     class="toolbarbutton-1 chromeclass-toolbar-additional upassword-compact-default"
+                     type="menu-button"
+                     oncontextmenu=""
+                     orient="horizontal"
+                     image="chrome://upassword/content/images/icon16_grey.png"
+                     label="uPassword"
+                     tooltiptext="uPassword"
+                     oncommand="upassword.overlay.buttonClick(event);">
+      <menupopup id="upassword-compact-menu" onpopupshowing="return upassword.overlay.menuPopUp(document);">
+        <menuitem id="upassword-bar-newPassword" class="menuitem-iconic" src="chrome://upassword/content/images/new.gif" label="newPasswordForWebSite" oncommand="upassword.overlay.newConfiguration(document); event.stopPropagation();"/>
+        <menuseparator/>
+        <menuitem id="upassword-bar-management" class="menuitem-iconic" src="chrome://upassword/content/images/manage.gif" label="management" oncommand="upassword.overlay.manageSetting(); event.stopPropagation();" key="up_key_export"/>
+        <menuseparator/>
+          <menuitem id="upassword-bar-import" class="menuitem-iconic" src="chrome://upassword/content/images/import.png" label="import" oncommand="upassword.overlay.doImportJSON(); event.stopPropagation();" key="up_key_import"/>
+          <menuitem id="upassword-bar-export" class="menuitem-iconic" src="chrome://upassword/content/images/export.png" label="export" oncommand="upassword.overlay.doExportJSON(); event.stopPropagation();" key="up_key_export"/>
+        <menuseparator/>
+        <menuitem id="upassword-bar-logoff" class="menuitem-iconic" src="chrome://upassword/content/images/logoff.gif" label="logoff" oncommand="upassword.overlay.logoff(document); event.stopPropagation();" key="up_key_login"/>
+      </menupopup>
+     </toolbarbutton>
+  </toolbarpalette>
+</overlay>

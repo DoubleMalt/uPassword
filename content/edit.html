@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Add new configuration</title>
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/upassword.edit.css" rel="stylesheet">
+    <link rel="shortcut icon" href="images/favicon.ico" />
+    <script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap-tabs.js"></script>
+    <script type="text/javascript" src="js/bootstrap-buttons.js"></script>
+    <script type="text/javascript" src="js/bootstrap-twipsy.js"></script>
+    <script type="text/javascript" src="js/upassword.js"></script>
+    <script type="text/javascript" src="js/upassword.edit.js"></script>
+    <script type="text/javascript" src="js/effective_tld_names.json"></script>
+    <script type="text/javascript" src="js/upassword.domain.js"></script>
+  </head>
+  <body>
+    <ul id="cfg_tabs" class="tabs" data-tabs="tabs">
+      <li id="new_rule_tab" class="active"><a href="#new_rule" i18n='newPasswordRule'>newPasswordRule</a></li>
+      <li><a href="#alias_rule" class="alias_rule" i18n='aliasPasswordRule'>aliasPasswordRule</a></li>
+    </ul>
+    <div id="cfg_content" class="tab-content">
+      <div class="active tab-pane" id="new_rule">
+        <div class="alert-message block-message warning hide domainExisted">
+          <a href="#" class="close">×</a>
+          <p i18n="recommandAlias"></p>
+          <div class="alert-actions">
+            <a href="#" class="btn small" i18n="aliasPasswordRule">Take this action</a>
+          </div>
+        </div>
+        <form id="newCfg">
+          <fieldset>
+            <div class="clearfix">
+              <label for="displayName" i18n='displayNameLabel'>displayNameLabel</label>
+              <div class="input">
+                <input type="text" size="30" name="displayName" class="span4" data-placement="right" rel='twipsy' i18nTarget='title,mustInputDisplayName' title='mustInputDisplayName' autofocus='autofocus'>
+              </div>
+            </div>
+            <div class="clearfix">
+              <label i18n='domainName'>domainName</label>
+              <div class="input">
+                <input class="span4 disabled" name="domain" id="domainCreation" type="text" placeholder="www.example.com" disabled />
+              </div>
+            </div>
+            <div class="clearfix">
+              <label for="upLength" i18n='passwordLength'>passwordLength</label>
+              <div class="input">
+                <select id="upLength" name="upLength" class="span4">
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8" selected>8</option>
+                  <option value="9">9</option>
+                  <option value="10">10</option>
+                  <option value="11">11</option>
+                  <option value="12">12</option>
+                  <option value="13">13</option>
+                  <option value="14">14</option>
+                  <option value="15">15</option>
+                  <option value="16">16</option>
+                  <option value="17">17</option>
+                  <option value="18">18</option>
+                </select>
+              </div>
+            </div>
+            <div class="clearfix">
+              <label id="upType" i18n='passwordType'>passwordType</label>
+              <div class="input">
+                <ul class="inputs-list">
+                  <li>
+                    <label>
+                      <input type="checkbox" value="1" name="upType" checked>
+                      <span i18n='withNumbers'>withNumbers</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label>
+                      <input type="checkbox" value="2" name="upType" checked>
+                      <span i18n='withLowCaseLetters'>withLowCaseLetters</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label>
+                      <input type="checkbox" value="4" name="upType" checked>
+                      <span i18n='withUpCaseLetters'>withUpCaseLetters</span>
+                  </label>
+                  </li>
+                  <li>
+                    <label>
+                      <input type="checkbox" value="8" name="upType">
+                      <span data-placement="right" rel='twipsy' title='mustChoiceOneRule' i18n='withSpecialChars' i18nTarget='title,mustChoiceOneRule' style="padding-right: 10px;">withSpecialChars</span>
+                    </label>
+                  </li>
+                </ul>
+                <span class="help-block">
+                  <strong i18n='notice'>notice</strong> <span i18n='mustChoiceOneRule'>mustChoiceOneRule</span>
+                </span>
+              </div>
+            </div>
+            <div class="clearfix">
+              <label for="defaultAction" i18n='defaultAction'>defaultAction</label>
+              <div class="input">
+                <select id="defaultAction" name="defaultAction" class="span4">
+                  <option value="copyAndDisplay" i18n='copyAndDisplayPassword'>copyAndDisplay</option>
+                  <option value="copy" i18n='copyToClipboard' selected>copyToClipboard</option>
+                  <option value="display" i18n='displayPassword'>displayPassword</option>
+                </select>
+              </div>
+            </div>
+          </fieldset>
+        </form>
+      </div>
+      <div class="tab-pane" id="alias_rule">
+        <form>
+          <fieldset>
+            <div class="clearfix">
+              <label i18n='domainName'>domainName</label>
+              <div class="input">
+                <input class="span4 disabled" name="domain" id="domainAlias" type="text" placeholder="www.example.com" disabled />
+              </div>
+            </div>
+            <div class="clearfix">
+              <label for="searchKey" i18n='filter'>filter</label>
+              <div class="input">
+                <div class="input-prepend">
+                  <span class="add-on">?</span>
+                  <input type="text" size="16" name="searchKey" id="searchKey"  class="span4">
+                </div>
+                <span class="help-block" i18n='pleaseInputDisplayNameOrDomainName'>pleaseInputDisplayNameOrDomainName</span>
+              </div>
+            </div>
+            <div class="clearfix">
+              <label for="listNames" i18n='ruleList'>ruleList</label>
+              <div class="input">
+                <select id="listNames" name="listNames" multiple="multiple" size="5"  class="span4">
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                </select>
+                <span class="help-block" data-placement="right" rel='twipsy' title='oneOptionAtLeast' i18n='useCtrlToMultipleSelect' i18nTarget='title,oneOptionAtLeast'>
+                  useCtrlToMultipleSelect
+                </span>
+              </div>
+              
+            </div>
+          </fieldset>
+        </form>
+      </div>
+    </div>
+    <div id="footer_button" class="actions">
+      <button class="btn primary" type="button" id="newSub" i18n='saveSetting'>saveSetting</button>&nbsp;<button class="btn" onclick="self.close();" i18n='cancel'>cancel</button>
+    </div>
+  </body>
+</html>

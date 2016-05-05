@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>upassword Setting</title>
+	<link rel="stylesheet" href="css/jquery.jsonview.css" type="text/css" media="screen" title="no title" charset="utf-8">
+	<link rel="shortcut icon" href="images/favicon.ico" />
+	<script src="js/jquery-1.7.1.min.js" type="text/javascript"></script>
+	<script src="js/jquery.jsonview.js" type="text/javascript"></script>
+	<script src="js/upassword.js" type="text/javascript"></script>
+	<script type="text/javascript" charset="utf-8">
+		$(function(){
+		  upassword.init();
+			$('#jsonview').jsonView(upassword.getSetting());
+		});
+	</script>	
+</head>
+
+<body>
+  
+<div id="jsonview">
+	
+</div>
+</body>
+</html>
